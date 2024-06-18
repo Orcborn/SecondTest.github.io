@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Clicker</title>
+<style>
+    /* Optional: Add some styling to the images */
+    img {
+        width: 978px;
+        height: 550px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<img id="myImage" src="https://i.ibb.co/zhkqSQQ/image.png" alt="Image 1">
+
+<script>
+    // Get a reference to the image element
+    var image = document.getElementById('myImage');
+
+    // Array containing paths to different images
+    var images = [
+        'https://i.ibb.co/zhkqSQQ/image.png',
+        'https://i.ibb.co/10y54G8/1.png',
+        'https://i.ibb.co/JQpXppp/2.png',
+        'https://i.ibb.co/tPz75Ty/3.png'
+    ];
+
+    // Variable to keep track of the current image index
+    var currentIndex = 0;
+
+    // Function to change the image
+    function changeImage(index) {
+        // Update the current index
+        currentIndex = index;
+
+        // Make sure the index stays within bounds
+        if (currentIndex < 0) {
+            currentIndex = images.length - 1; // Wrap around to the last image
+        } else if (currentIndex >= images.length) {
+            currentIndex = 0; // Wrap around to the first image
+        }
+
+        // Set the src attribute of the image to the image at the new index
+        image.src = images[currentIndex];
+    }
+
+    // Add event listeners for left and right arrow keys
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowLeft') {
+            // Move to the previous image
+            changeImage(currentIndex - 1);
+        } else if (event.key === 'ArrowRight') {
+            // Move to the next image
+            changeImage(currentIndex + 1);
+        }
+    });
+</script>
+
+</body>
+</html>
